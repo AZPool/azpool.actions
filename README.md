@@ -1,4 +1,4 @@
 
-# alvores.actions
+# azpool.actions
 
 Custom GitHub Actions.
