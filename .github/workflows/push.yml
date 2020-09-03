@@ -1,0 +1,24 @@
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Build container
+      run: |
+        docker build -t docker.pkg.github.com/AZPool/azpool.actions/protoc:${{ GITHUB_SHA }} ./protoc
+    - name: Register container
+      run: |
+        docker push docker.pkg.github.com/AZPool/azpool.actions/protoc:${{ GITHUB_SHA }}
+    - name: Build container
+      run: |
+        docker build -t docker.pkg.github.com/AZPool/azpool.actions/protoc:latest ./protoc
+    - name: Register container
+      run: |
+        docker push docker.pkg.github.com/AZPool/azpool.actions/protoc:latest
