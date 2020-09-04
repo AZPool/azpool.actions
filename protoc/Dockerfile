@@ -2,7 +2,7 @@
 FROM launcher.gcr.io/google/debian9:latest
 
 RUN apt-get update && \
-  apt-get install -y unzip
+  apt-get install -y unzip curl
 
 RUN curl -sL -o protoc.zip https://github.com/google/protobuf/releases/download/v3.11.4/protoc-3.11.4-linux-x86_64.zip && \
   unzip protoc.zip -d /opt/protobuf && \
