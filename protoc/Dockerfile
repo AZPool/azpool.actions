@@ -13,4 +13,3 @@ RUN curl -L https://github.com/altipla-consulting/protoc-gen-grpc_browser/releas
   chmod +x /usr/bin/protoc-gen-grpc_browser
 
 ENV PATH $PATH:/opt/protobuf/bin
-WORKDIR /workspace
