@@ -2,7 +2,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -10,15 +10,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@master
-    - name: Build container
-      run: |
-        docker build -t docker.pkg.github.com/AZPool/azpool.actions/protoc:${{ GITHUB_SHA }} ./protoc
-    - name: Register container
-      run: |
-        docker push docker.pkg.github.com/AZPool/azpool.actions/protoc:${{ GITHUB_SHA }}
-    - name: Build container
-      run: |
-        docker build -t docker.pkg.github.com/AZPool/azpool.actions/protoc:latest ./protoc
-    - name: Register container
-      run: |
-        docker push docker.pkg.github.com/AZPool/azpool.actions/protoc:latest
+
+    - name: Build and push protoc
+      uses: docker/build-push-action@v1
+      with:
+        repository: AZPool/azpool.actions
+        dockerfile: protoc/Dockerfile
+        tag_with_sha: true
+        tags: latest
